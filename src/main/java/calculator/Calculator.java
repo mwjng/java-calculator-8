@@ -21,6 +21,7 @@ public class Calculator {
         Optional<CustomDelimiter> customDelimiter = CustomDelimiter.from(input);
         if (customDelimiter.isPresent()) {
             CustomDelimiter delimiter = customDelimiter.get();
+            input = delimiter.replaceWithDefaultDelimiter(input);
         }
     }
 }

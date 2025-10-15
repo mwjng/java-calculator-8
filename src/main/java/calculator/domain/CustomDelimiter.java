@@ -25,6 +25,12 @@ public class CustomDelimiter {
                 && expression.contains("\\n");
     }
 
+    public String replaceWithDefaultDelimiter(String expression) {
+        int delimiterEndIndex = expression.indexOf("\\n");
+        String numbersSection = expression.substring(delimiterEndIndex + 2);
+        return numbersSection.replace(delimiter, ",");
+    }
+
     private void validateNotBlank(String delimiter) {
         if (delimiter.isBlank()) {
             throw new IllegalArgumentException("커스텀 구분자가 공백이거나 비어있으면 안됩니다.");
