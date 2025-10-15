@@ -1,6 +1,7 @@
 package calculator;
 
 import calculator.domain.CustomDelimiter;
+import calculator.domain.Numbers;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 import java.util.Optional;
@@ -23,5 +24,7 @@ public class Calculator {
             CustomDelimiter delimiter = customDelimiter.get();
             input = delimiter.replaceWithDefaultDelimiter(input);
         }
+
+        Numbers numbers = Numbers.from(input);
     }
 }
