@@ -13,7 +13,7 @@ public class Number {
             int parsedNumber = Integer.parseInt(rawValue);
             return new Number(parsedNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력한 값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException("입력한 값이 숫자가 아닙니다.", e);
         }
     }
 
