@@ -11,23 +11,31 @@ public class Calculator {
     private final OutputView outputView = new OutputView();
 
     public void run() {
+        String input = readInputString();
+        int result = calculateSum(input);
+        outputView.showResult(result);
+    }
+
+    private String readInputString() {
         outputView.askInputString();
-        String input = inputView.inputString();
+        return inputView.inputString();
+    }
 
+    private int calculateSum(String input) {
         if (input.isBlank()) {
-            outputView.showResult(0);
-            return;
+            return 0;
         }
+        input = replaceCustomDelimiter(input);
+        Numbers numbers = Numbers.from(input);
+        return numbers.sum();
+    }
 
+    private String replaceCustomDelimiter(String input) {
         Optional<CustomDelimiter> customDelimiter = CustomDelimiter.from(input);
         if (customDelimiter.isPresent()) {
             CustomDelimiter delimiter = customDelimiter.get();
             input = delimiter.replaceWithDefaultDelimiter(input);
         }
-
-        Numbers numbers = Numbers.from(input);
-        int sum = numbers.sum();
-
-        outputView.showResult(sum);
+        return input;
     }
 }
