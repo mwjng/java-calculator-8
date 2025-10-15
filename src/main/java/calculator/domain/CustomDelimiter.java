@@ -28,7 +28,7 @@ public class CustomDelimiter {
     public String replaceWithDefaultDelimiter(String expression) {
         int delimiterEndIndex = expression.indexOf("\\n");
         String numbersSection = expression.substring(delimiterEndIndex + 2);
-        return numbersSection.replace(delimiter, ",");
+        return numbersSection.replace(delimiter, DefaultDelimiter.defaultSymbol());
     }
 
     private void validateNotBlank(String delimiter) {
