@@ -18,4 +18,10 @@ public class Numbers {
 
         return new Numbers(parsedNumbers);
     }
+
+    public int sum() {
+        return numbers.stream()
+                .mapToInt(Number::value)
+                .sum();
+    }
 }

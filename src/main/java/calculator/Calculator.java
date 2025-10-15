@@ -26,5 +26,8 @@ public class Calculator {
         }
 
         Numbers numbers = Numbers.from(input);
+        int sum = numbers.sum();
+
+        outputView.showResult(sum);
     }
 }
