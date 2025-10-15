@@ -4,7 +4,6 @@ import calculator.domain.CustomDelimiter;
 import calculator.domain.Numbers;
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import java.util.Optional;
 
 public class Calculator {
     private final InputView inputView = new InputView();
@@ -31,11 +30,8 @@ public class Calculator {
     }
 
     private String replaceCustomDelimiter(String input) {
-        Optional<CustomDelimiter> customDelimiter = CustomDelimiter.from(input);
-        if (customDelimiter.isPresent()) {
-            CustomDelimiter delimiter = customDelimiter.get();
-            input = delimiter.replaceWithDefaultDelimiter(input);
-        }
-        return input;
+        return CustomDelimiter.from(input)
+                .map(delimiter -> delimiter.replaceWithDefaultDelimiter(input))
+                .orElse(input);
     }
 }
