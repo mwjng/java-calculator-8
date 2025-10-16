@@ -6,6 +6,8 @@ import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class Calculator {
+    private static final int DEFAULT_SUM = 0;
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -22,7 +24,7 @@ public class Calculator {
 
     private int calculateSum(String expression) {
         if (expression.isBlank()) {
-            return 0;
+            return DEFAULT_SUM;
         }
         expression = replaceCustomDelimiter(expression);
         Numbers numbers = Numbers.from(expression);

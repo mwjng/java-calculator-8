@@ -3,6 +3,12 @@ package calculator.domain;
 import java.util.Optional;
 
 public class CustomDelimiter {
+    private static final String BLANK_ERROR_MESSAGE = "커스텀 구분자가 공백이거나 비어있으면 안됩니다.";
+
+    private static final String CUSTOM_DELIMITER_PREFIX = "//";
+    private static final String CUSTOM_DELIMITER_SUFFIX = "\\n";
+    private static final int PREFIX_LENGTH = CUSTOM_DELIMITER_PREFIX.length();
+
     private final String delimiter;
 
     private CustomDelimiter(String delimiter) {
@@ -12,8 +18,8 @@ public class CustomDelimiter {
 
     public static Optional<CustomDelimiter> from(String expression) {
         if (hasCustomDelimiter(expression)) {
-            int delimiterEndIndex = expression.indexOf("\\n");
-            String customDelimiter = expression.substring(2, delimiterEndIndex);
+            int delimiterEndIndex = expression.indexOf(CUSTOM_DELIMITER_SUFFIX);
+            String customDelimiter = expression.substring(PREFIX_LENGTH, delimiterEndIndex);
 
             return Optional.of(new CustomDelimiter(customDelimiter));
         }
@@ -21,19 +27,19 @@ public class CustomDelimiter {
     }
 
     private static boolean hasCustomDelimiter(String expression) {
-        return expression.startsWith("//")
-                && expression.contains("\\n");
+        return expression.startsWith(CUSTOM_DELIMITER_PREFIX)
+                && expression.contains(CUSTOM_DELIMITER_SUFFIX);
     }
 
     public String replaceWithDefaultDelimiter(String expression) {
-        int delimiterEndIndex = expression.indexOf("\\n");
-        String numbersSection = expression.substring(delimiterEndIndex + 2);
+        int delimiterEndIndex = expression.indexOf(CUSTOM_DELIMITER_SUFFIX);
+        String numbersSection = expression.substring(delimiterEndIndex + PREFIX_LENGTH);
         return numbersSection.replace(delimiter, DefaultDelimiter.defaultSymbol());
     }
 
     private void validateNotBlank(String delimiter) {
         if (delimiter.isBlank()) {
-            throw new IllegalArgumentException("커스텀 구분자가 공백이거나 비어있으면 안됩니다.");
+            throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
         }
     }
 }

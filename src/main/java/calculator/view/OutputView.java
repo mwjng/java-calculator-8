@@ -1,12 +1,14 @@
 package calculator.view;
 
 public class OutputView {
+    private static final String INPUT_MESSAGE = "덧셈할 문자열을 입력해 주세요.";
+    private static final String RESULT_MESSAGE = "결과 : ";
 
     public void askInputExpression() {
-        System.out.println("덧셈할 문자열을 입력해 주세요.");
+        System.out.println(INPUT_MESSAGE);
     }
 
     public void showResult(int result) {
-        System.out.println("결과 : " + result);
+        System.out.println(RESULT_MESSAGE + result);
     }
 }
