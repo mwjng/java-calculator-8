@@ -11,7 +11,7 @@ public class Numbers {
     }
 
     public static Numbers from(String expression) {
-        String[] splitNumbers = expression.split(DefaultDelimiter.pattern());
+        String[] splitNumbers = expression.split(DefaultDelimiter.pattern(), -1);
         List<Number> parsedNumbers = Arrays.stream(splitNumbers)
                 .map(Number::from)
                 .toList();
