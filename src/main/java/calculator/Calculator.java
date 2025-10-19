@@ -26,12 +26,12 @@ public class Calculator {
         if (expression.isBlank()) {
             return DEFAULT_SUM;
         }
-        expression = replaceCustomDelimiter(expression);
+        expression = applyDefaultDelimiter(expression);
         Numbers numbers = Numbers.from(expression);
         return numbers.sum();
     }
 
-    private String replaceCustomDelimiter(String expression) {
+    private String applyDefaultDelimiter(String expression) {
         return CustomDelimiter.from(expression)
                 .map(delimiter -> delimiter.replaceWithDefaultDelimiter(expression))
                 .orElse(expression);
