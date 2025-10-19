@@ -1,5 +1,6 @@
 package calculator.domain;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class CustomDelimiter {
@@ -35,6 +36,23 @@ public class CustomDelimiter {
         int delimiterEndIndex = expression.indexOf(CUSTOM_DELIMITER_SUFFIX);
         String numbersSection = expression.substring(delimiterEndIndex + PREFIX_LENGTH);
         return numbersSection.replace(delimiter, DefaultDelimiter.defaultSymbol());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CustomDelimiter other = (CustomDelimiter) o;
+        return Objects.equals(delimiter, other.delimiter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(delimiter);
     }
 
     private void validateNotBlank(String delimiter) {
