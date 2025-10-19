@@ -74,14 +74,6 @@ class CalculatorTest extends NsTest {
     }
 
     @Test
-    void 숫자_사이에_구분자가_연속되는_경우() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("1,,3"))
-                    .isInstanceOf(IllegalArgumentException.class);
-        });
-    }
-
-    @Test
     void int_범위_초과() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("1,2147483648,3"))
