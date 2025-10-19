@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
-public class CustomCalculatorTest extends NsTest {
+class CalculatorTest extends NsTest {
 
     @Test
     void 기본_구분자() {
